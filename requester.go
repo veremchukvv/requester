@@ -16,6 +16,13 @@ func patchJSON(url string, params url.Values, result interface{}) error {
 		strings.NewReader(params.Encode()),
 	)
 	if err != nil {
+		return fmt.Errorf("Build request error: %w", err)
+	}
+
+	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	response, err := http.DefaultClient.Do(request)
+	if err != nil {
 		return fmt.Errorf("Response error: %w", err)
 	}
 	if response.StatusCode != http.StatusOK {
