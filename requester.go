@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func patchJSON(url string, params url.Values, result interface{}) error {
+func PatchJSON(url string, params url.Values, result interface{}) error {
 	request, err := http.NewRequest(
 		http.MethodPatch,
 		url,
